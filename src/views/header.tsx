@@ -1,11 +1,10 @@
-import { Box, createStyles, makeStyles, PaletteType } from '@material-ui/core';
+import { Box, createStyles, makeStyles } from '@material-ui/core';
 import React from 'react';
 import logo from '../assets/img/logo.png';
 import ThemeToggler from './Todo/components/theme-toggler';
+import { useDispatch } from 'react-redux';
+import { TodoActions } from './Todo/actions';
 
-interface Props {
-  setTheme: React.Dispatch<React.SetStateAction<PaletteType>>;
-}
 const useStyles = makeStyles(() =>
   createStyles({
     root: { display: 'flex', justifyContent: 'space-between', alignContent: 'center' },
@@ -15,11 +14,12 @@ const useStyles = makeStyles(() =>
     },
   })
 );
-
-export default function Header({ setTheme }: Props) {
+const todoActions = new TodoActions();
+export default function Header() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const handleToggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    dispatch(todoActions.toggleTheme());
   };
   return (
     <Box className={classes.root}>

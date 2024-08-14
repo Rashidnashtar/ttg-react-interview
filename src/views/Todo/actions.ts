@@ -5,11 +5,13 @@ import TaskService from '../../services/TasksService';
 export const TodoActionTypes = {
   addTodo: 'TODO/ADD',
   deleteTodo: 'TODO/REMOVE',
+  toggleTheme: 'TODO/TOGGLE_THEME',
 } as const;
 
 export type TaskActionPayloadTypes =
   | { type: typeof TodoActionTypes.addTodo; payload: Task }
-  | { type: typeof TodoActionTypes.deleteTodo; payload: number };
+  | { type: typeof TodoActionTypes.deleteTodo; payload: number }
+  | { type: typeof TodoActionTypes.toggleTheme };
 
 const services = new TaskService();
 export class TodoActions {
@@ -27,6 +29,11 @@ export class TodoActions {
     dispatch({
       type: TodoActionTypes.deleteTodo,
       payload: id,
+    });
+  };
+  toggleTheme = () => (dispatch: Dispatch) => {
+    dispatch({
+      type: TodoActionTypes.toggleTheme,
     });
   };
 }

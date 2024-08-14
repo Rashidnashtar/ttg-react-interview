@@ -1,4 +1,4 @@
-import { Box, createStyles, makeStyles, useTheme } from '@material-ui/core';
+import { Box, createStyles, makeStyles, PaletteType, useTheme } from '@material-ui/core';
 import React, { ReactNode } from 'react';
 import Header from '../views/header';
 
@@ -20,13 +20,12 @@ const useStyles = makeStyles(theme =>
 );
 interface ILayoutProps {
   children: ReactNode;
-  setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
 }
-export default function Layout({ children, setTheme }: ILayoutProps) {
+export default function Layout({ children }: ILayoutProps) {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Header setTheme={setTheme} />
+      <Header />
       <Box flex={1}>{children}</Box>
     </Box>
   );
