@@ -3,7 +3,7 @@ import { deepPurple, grey, red, teal } from '@material-ui/core/colors';
 import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 
 const primary = deepPurple[700]; // Muted deep purple
-const secondary = teal[400]; // Soft teal
+const secondary = red[400]; // Soft teal
 
 const lightMode: PaletteOptions = {
   type: 'light',

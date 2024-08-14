@@ -4,22 +4,29 @@ import logo from '../assets/img/logo.png';
 import ThemeToggler from './Todo/components/theme-toggler';
 import { useDispatch } from 'react-redux';
 import { TodoActions } from './Todo/actions';
+import { useTodoStore } from '../store';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles(theme =>
   createStyles({
-    root: { display: 'flex', justifyContent: 'space-between', alignContent: 'center' },
+    root: {
+      position: 'relative',
+      zIndex: 99,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignContent: 'center',
+    },
 
     logo: {
       width: 120,
     },
   })
 );
-const todoActions = new TodoActions();
+
 export default function Header() {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const { toggleTheme } = useTodoStore();
   const handleToggleTheme = () => {
-    dispatch(todoActions.toggleTheme());
+    toggleTheme();
   };
   return (
     <Box className={classes.root}>

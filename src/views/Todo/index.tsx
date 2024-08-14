@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
   titleContainer: {
     height: '100%',
-    marginTop: '20%',
+    paddingTop: '20%',
   },
   title: {
     color: theme.palette.type === 'light' ? theme.palette.grey[900] : theme.palette.grey[50],

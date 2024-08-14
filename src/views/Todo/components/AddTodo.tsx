@@ -58,7 +58,7 @@ const AddTodo = ({ onAddTask }: AddToDoProps) => {
         disableElevation
         className={classes.buttonStyles}
         type="submit"
-        color="inherit"
+        color="primary"
         variant="contained"
       >
         Add Task

@@ -14,12 +14,13 @@ import {
   Paper,
 } from '@material-ui/core';
 import React from 'react';
+import { useTodoStore } from '../../../store';
 
 const useStyles = makeStyles(theme =>
   createStyles({
     root: {
       height: '100%',
-      marginTop: '20%',
+      paddingTop: '20%',
     },
     listItem: {
       marginBottom: '10px',
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme =>
       padding: '10px',
       marginTop: '4px',
     },
-    itemText: { maxWidth: '90%' },
+    itemText: { maxWidth: 'calc(100% - 90px)', wordBreak: 'break-word' },
     title: {
       fontWeight: 'bold',
     },
@@ -41,21 +42,19 @@ const useStyles = makeStyles(theme =>
 const actions = new TodoActions();
 const TodoList = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const todos = useSelector(selectTodos);
-
+  const { addTodo, removeTodo, tasks } = useTodoStore();
   const handleAddTodo = (title: string) => {
-    dispatch(actions.addTodo(title));
+    addTodo(title);
   };
   const handleDeleteTodo = (id: number) => {
-    dispatch(actions.removeTodo(id));
+    removeTodo(id);
   };
   return (
     <Box className={classes.root}>
       <AddTodo onAddTask={handleAddTodo} />
       <List>
         {React.Children.toArray(
-          todos.map(item => (
+          tasks.map(item => (
             <Paper className={classes.paper}>
               <ListItem className={classes.listItem}>
                 <ListItemText
@@ -65,6 +64,7 @@ const TodoList = () => {
                 />
                 <ListItemSecondaryAction>
                   <Button
+                    color="secondary"
                     variant="contained"
                     aria-label="delete"
                     onClick={() => handleDeleteTodo(item.id)}

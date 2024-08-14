@@ -11,6 +11,7 @@ import Layout from './layout/layout';
 import { PaletteType } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { selectTheme } from './views/Todo/selectors';
+import { useTodoStore } from './store';
 
 const history = createBrowserHistory({ basename: '.' });
 
@@ -18,7 +19,7 @@ const App = () => {
   React.useEffect(() => {
     console.log('Current Version ', packageJson.version);
   }, []);
-  const theme = useSelector(selectTheme);
+  const { theme } = useTodoStore();
   return (
     <MuiThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <React.Suspense fallback={<LoadingPage />}>
